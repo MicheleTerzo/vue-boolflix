@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!------ VUE JS ------>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+
+    <!------ AXOS ------>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+    
+    <!------ FONT AWESOME ------>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" /> -->
+
+    <!-- ---- CUSTOM CSS ---- -->
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <nav>
+            <div class="nav-bar dFlex justifyBetween alignCenter">
+
+                <div class="dFlex justifyStart alignCenter">
+
+                    <img src="https://fontmeme.com/permalink/201202/5dd131f34650ee16d14564dc7664eaec.png" alt="">
+
+                    <ul class="dFlex alignCenter justifyBetween">
+                        <li>Home</li>
+                        <li>Serie TV</li>
+                        <li>Film</li>
+                        <li>La mia lista</li>
+                    </ul>
+
+                </div>
+
+
+                <div class="dFlex justifyEnd alignCenter">
+
+                    <input 
+                    v-model="searchInput"
+                    v-on:keyup.enter="search"
+                    type="text" 
+                    placeholder="Titoli, persone, generi...">
+
+                    <img 
+                    src="img/avatar.jpg" 
+                    alt="">
+                </div>
+            </div>
+        </nav>
+
+
+
+            <main>
+                <div class="contentWindow">
+                    <ul class="dFlex justifyStart fWrap">
+                        <li v-for="film in films">
+                            <div class="filmBox">
+
+                                <div>
+                                    <img :src="img404(film)" alt="">
+                                </div>
+
+                                <div class="dFlex fDirectionCol justifyBetween alignCenter">
+                                    <h3>{{ film.title }}</h3>
+                                    <h5>{{ film.original_title }}</h5>
+                                    <h4>{{ film.vote_average }}</h4>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </main>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
