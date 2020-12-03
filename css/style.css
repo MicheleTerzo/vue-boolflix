@@ -87,14 +87,13 @@ ul{
     padding: 10px;
     background-color: #141414;
 }
-.contentWindow li{
+.scheda{
     margin: 20px 10px;
     padding: 25px;
     text-align: center;
     flex-grow: unset;
     flex-shrink: unset;
     background-color: #1a1a1a;
-    
 }
 .filmBox{
     width: 240px;
@@ -106,5 +105,8 @@ ul{
 .filmBox img{
     width: 240px;
     height: 350px;
+}
+.filmBox div:last-child ul li{
+    display: inline-block;
 }
 

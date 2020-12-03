@@ -11,9 +11,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
     
     <!------ FONT AWESOME ------>
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
         integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
-        crossorigin="anonymous" /> -->
+        crossorigin="anonymous" />
 
     <!-- ---- CUSTOM CSS ---- -->
     <link rel="stylesheet" href="css/style.css">
@@ -58,18 +58,24 @@
             <main>
                 <div class="contentWindow">
                     <ul class="dFlex justifyStart fWrap">
-                        <li v-for="film in films">
+                        <li class="scheda" v-for="film in films">
                             <div class="filmBox">
 
-                                <div>
+                                <div @mouseover="hover = true" @mouseleave="hover = false">
                                     <img :src="img404(film)" alt="">
+                                    <div v-if="hover" class="dFlex fDirectionCol justifyBetween alignCenter">
+                                        <h2>{{ titleCheck(film) }}</h2>
+                                        <ul>
+                                            <li><i :class="{fas:(film.vote_average > 1)}" class="far fa-star"></i></li>
+                                            <li><i :class="{fas:(film.vote_average > 3)}" class="far fa-star"></i></li>
+                                            <li><i :class="{fas:(film.vote_average > 5)}" class="far fa-star"></i></li>
+                                            <li><i :class="{fas:(film.vote_average > 7)}" class="far fa-star"></i></li>
+                                            <li><i :class="{fas:(film.vote_average > 9)}" class="far fa-star"></i></li>
+                                        </ul>
+                                    </div>
                                 </div>
 
-                                <div class="dFlex fDirectionCol justifyBetween alignCenter">
-                                    <h3>{{ film.title }}</h3>
-                                    <h5>{{ film.original_title }}</h5>
-                                    <h4>{{ film.vote_average }}</h4>
-                                </div>
+                                
                             </div>
                         </li>
                     </ul>
