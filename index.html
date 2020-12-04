@@ -15,7 +15,7 @@
         integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
         crossorigin="anonymous" />
 
-    <!-- ---- CUSTOM CSS ---- -->
+    <!------ CUSTOM CSS ------>
     <link rel="stylesheet" href="css/style.css">
     <title>Document</title>
 </head>
@@ -23,18 +23,14 @@
     <div id="app">
         <nav>
             <div class="nav-bar dFlex justifyBetween alignCenter">
-
                 <div class="dFlex justifyStart alignCenter">
-
                     <img src="https://fontmeme.com/permalink/201202/5dd131f34650ee16d14564dc7664eaec.png" alt="">
-
                     <ul class="dFlex alignCenter justifyBetween">
                         <li>Home</li>
                         <li>Serie TV</li>
                         <li>Film</li>
                         <li>La mia lista</li>
                     </ul>
-
                 </div>
 
 
@@ -58,12 +54,19 @@
             <main>
                 <div class="contentWindow">
                     <ul class="dFlex justifyStart fWrap">
-                        <li class="scheda" v-for="film in films">
+                        <li 
+                        v-for="(film, filmIndex) in filteredFilms"
+                        @mouseover="hover = filmIndex" 
+                        @mouseleave="hover = null" 
+                        class="scheda">
                             <div class="filmBox">
+                                <div>
+                                    <img 
+                                    :src="img404(film)" 
+                                    alt="" 
+                                    :class="{graphicFilter: hover === filmIndex}">
 
-                                <div @mouseover="hover = true" @mouseleave="hover = false">
-                                    <img :src="img404(film)" alt="">
-                                    <div v-if="hover" class="dFlex fDirectionCol justifyBetween alignCenter">
+                                    <div class="description" :class="{visible: hover === filmIndex, invisible: hover != filmIndex}">
                                         <h2>{{ titleCheck(film) }}</h2>
                                         <ul>
                                             <li><i :class="{fas:(film.vote_average > 1)}" class="far fa-star"></i></li>
@@ -72,10 +75,9 @@
                                             <li><i :class="{fas:(film.vote_average > 7)}" class="far fa-star"></i></li>
                                             <li><i :class="{fas:(film.vote_average > 9)}" class="far fa-star"></i></li>
                                         </ul>
+                                        <p>{{ film.overview }}</p>
                                     </div>
                                 </div>
-
-                                
                             </div>
                         </li>
                     </ul>

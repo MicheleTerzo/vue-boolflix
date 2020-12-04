@@ -4,10 +4,17 @@ const boolfix = new Vue({
     el: '#app',
     data: {
         imgDefaultPath : "https://image.tmdb.org/t/p/w500",
-        searchInput : "fight",
+        searchInput : "",
         films : [],
-        hover : false
+        hover : null
 
+    },
+    computed : {
+        filteredFilms() {
+            return this.films.filter(film => {
+                return film.poster_path != null
+            })
+        }
     },
     methods : {
         search () {
@@ -29,7 +36,7 @@ const boolfix = new Vue({
                 }
             }).then(risposta => {
                 this.films = this.films.concat(risposta.data.results)
-            })
+            });    
         },
         img404 (film) {
             let path = film.poster_path;
